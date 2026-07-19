@@ -1,0 +1,11 @@
+#port {
+  position: relative;
+  z-index: 20;
+  background: var(--void);
+  margin-top: 0vh;
+  opacity: 0;
+  transform: translateY(60px);
+  will-change: transform, opacity;
+  transition: opacity 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
+    transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}

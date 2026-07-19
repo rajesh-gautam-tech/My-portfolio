@@ -1,0 +1,30 @@
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 25;
+  background: var(--void);
+}
+footer p {
+  font-family: var(--fm);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+footer span {
+  color: var(--red-hi);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  footer {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}

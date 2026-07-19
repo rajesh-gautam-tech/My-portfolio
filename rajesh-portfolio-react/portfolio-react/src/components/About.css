@@ -1,0 +1,116 @@
+#about {
+  padding-top: 120px;
+}
+.ag {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 60px;
+  align-items: start;
+}
+.acard {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+}
+.acard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), transparent);
+}
+.aavatar {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--surface), var(--deep));
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.aavatar svg {
+  width: 55%;
+  height: 55%;
+  filter: drop-shadow(0 4px 8px rgba(138, 149, 160, 0.2));
+}
+.astats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.astat {
+  background: var(--surface);
+  padding: 12px;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.astats strong {
+  display: block;
+  font-family: var(--fd);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--platinum);
+  letter-spacing: 0.05em;
+}
+.astats span {
+  font-family: var(--fm);
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: block;
+}
+.at p {
+  font-size: 0.96rem;
+  line-height: 1.8;
+  color: var(--silver);
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+.at p strong {
+  color: var(--platinum);
+  font-weight: 600;
+}
+.aq {
+  margin-top: 28px;
+  padding: 18px 22px;
+  border-left: 3px solid var(--red);
+  background: rgba(138, 149, 160, 0.05);
+  border-radius: 0 6px 6px 0;
+}
+.aq p {
+  font-family: var(--fm);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--silver);
+  margin: 0;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .ag {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .aavatar {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 480px) {
+  .astats {
+    grid-template-columns: 1fr 1fr;
+  }
+}

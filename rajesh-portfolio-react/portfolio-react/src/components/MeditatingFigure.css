@@ -1,0 +1,28 @@
+#fig {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  pointer-events: none;
+  width: 72px;
+  height: 90px;
+  transform-origin: bottom center;
+  animation: breatheBottom 4s ease-in-out infinite;
+}
+@keyframes breatheBottom {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+    transform: translateX(-50%) scaleY(1.04) translateY(-2px);
+  }
+}
+
+@media (max-width: 900px) {
+  #fig {
+    width: 56px;
+    height: 70px;
+  }
+}
