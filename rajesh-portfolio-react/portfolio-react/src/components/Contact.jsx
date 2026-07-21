@@ -2,18 +2,44 @@ import { useState } from "react";
 import { contactIntro, contactLinks } from "../data/portfolioData";
 import "./Contact.css";
 
+// Paste your deployed Vercel URL here after deploying the backend,
+// e.g. "https://your-project-name.vercel.app/api/send"
+const API_URL = "https://YOUR-VERCEL-PROJECT.vercel.app/api/send";
+
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
   const handleChange = (field) => (e) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
-    // Hook up your own send logic here (API call, email service, etc.)
-    setSent(true);
+    if (status === "sending" || status === "sent") return;
+
+    setStatus("sending");
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setStatus("sent");
+    } catch (err) {
+      console.error("Send error:", err);
+      setStatus("error");
+    }
   };
+
+  const btnLabel = {
+    idle: "SEND PAYLOAD →",
+    sending: "SENDING…",
+    sent: "TRANSMITTED ✓",
+    error: "FAILED — TRY AGAIN",
+  }[status];
+
 
   return (
     <section id="contact">
@@ -89,9 +115,9 @@ export default function Contact() {
             type="button"
             style={{ alignSelf: "flex-start", minWidth: "200px" }}
             onClick={handleSubmit}
-            disabled={sent}
+            disabled={status === "sending" || status === "sent"}
           >
-            <span className="btn-text-main">{sent ? "TRANSMITTED ✓" : "SEND PAYLOAD →"}</span>
+            <span className="btn-text-main">{btnLabel}</span>
           </button>
         </div>
       </div>

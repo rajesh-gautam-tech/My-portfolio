@@ -1,8 +1,59 @@
+import { useRef, useState } from "react";
 import "./MeditatingFigure.css";
 
 export default function MeditatingFigure() {
+  const [pos, setPos] = useState(null); // null = default CSS (bottom-center) position
+  const [dragging, setDragging] = useState(false);
+  const offset = useRef({ x: 0, y: 0 });
+  const svgRef = useRef(null);
+
+  const handlePointerDown = (e) => {
+    const rect = svgRef.current.getBoundingClientRect();
+    offset.current = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    };
+    setDragging(true);
+    svgRef.current.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e) => {
+    if (!dragging) return;
+    setPos({
+      left: e.clientX - offset.current.x,
+      top: e.clientY - offset.current.y,
+    });
+  };
+
+  const handlePointerUp = (e) => {
+    setDragging(false);
+    svgRef.current.releasePointerCapture(e.pointerId);
+  };
+
+  const style = pos
+    ? {
+        left: `${pos.left}px`,
+        top: `${pos.top}px`,
+        right: "auto",
+        bottom: "auto",
+        transform: "none",
+        animation: "none",
+        cursor: dragging ? "grabbing" : "grab",
+      }
+    : { cursor: "grab" };
+
   return (
-    <svg id="fig" viewBox="0 0 72 90" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      id="fig"
+      ref={svgRef}
+      viewBox="0 0 72 90"
+      xmlns="http://www.w3.org/2000/svg"
+      style={style}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+    >
       <ellipse cx="36" cy="11" rx="7" ry="5" fill="#2e1a0e" />
       <path d="M27,18 Q28,8 36,8 Q44,8 45,18" fill="#2e1a0e" />
       <circle cx="36" cy="22" r="12" fill="#e07855" />

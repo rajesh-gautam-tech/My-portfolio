@@ -14,7 +14,14 @@ export default function Navbar() {
 
   return (
     <nav id="mnav" className={scrolled ? "sc" : ""}>
-      <a href="#" className="nlogo">
+      <a
+        href="#"
+        className="nlogo"
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      >
         <svg viewBox="0 0 48 48" fill="none">
           <defs>
             <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
