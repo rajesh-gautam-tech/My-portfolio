@@ -8,14 +8,18 @@ import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import MeditatingFigure from "./components/MeditatingFigure";
+import CursorGlow from "./components/CursorGlow";
 import useScrollReveal from "./hooks/useScrollReveal";
+import useTiltCards from "./hooks/useTiltCards";
 
 export default function App() {
   const portRef = useRef(null);
   useScrollReveal();
+  useTiltCards(".pc, .tc");
 
   return (
     <>
+      <CursorGlow />
       <Navbar />
       <Hero portRef={portRef} />
 

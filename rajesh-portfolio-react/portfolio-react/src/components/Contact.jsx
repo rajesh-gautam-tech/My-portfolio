@@ -4,7 +4,7 @@ import "./Contact.css";
 
 // Paste your deployed Vercel URL here after deploying the backend,
 // e.g. "https://your-project-name.vercel.app/api/send"
-const API_URL = "https://YOUR-VERCEL-PROJECT.vercel.app/api/send";
+const API_URL = "https://portfolio-backend-eight-peach.vercel.app/api/send";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });

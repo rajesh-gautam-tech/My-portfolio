@@ -10,13 +10,16 @@
   padding: 0 5%;
 }
 .pc {
+  --mx: 50%;
+  --my: 50%;
   background: var(--panel);
   border: 1px solid var(--border);
   padding: 32px;
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  transition: border-color 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+  transform-style: preserve-3d;
+  transition: border-color 0.3s, transform 0.15s ease-out, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -26,16 +29,39 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(138, 149, 160, 0.04), transparent 60%);
+  background: radial-gradient(
+    380px circle at var(--mx) var(--my),
+    rgba(138, 149, 160, 0.14),
+    transparent 62%
+  );
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.35s;
+  pointer-events: none;
+}
+.pc::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 8px;
+  background: radial-gradient(
+    240px circle at var(--mx) var(--my),
+    var(--border-hi),
+    transparent 65%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
 }
 .pc:hover {
   border-color: var(--border-hi);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.05);
 }
-.pc:hover::after {
+.pc:hover::after,
+.pc:hover::before {
   opacity: 1;
 }
 .pct {
