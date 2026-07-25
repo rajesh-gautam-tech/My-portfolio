@@ -1,0 +1,63 @@
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 480px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    circle,
+    rgba(138, 149, 160, 0.1) 0%,
+    rgba(138, 149, 160, 0.04) 38%,
+    transparent 70%
+  );
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+/* ── CUSTOM CURSOR: dot + ring ── */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red-hi);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.03s linear;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--red-hi);
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.4s ease, width 0.25s ease, height 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+.cursor-ring.cursor-ring-active {
+  width: 26px;
+  height: 26px;
+  border-color: var(--red);
+}
+
+@media (max-width: 900px) {
+  .cursor-glow,
+  .cursor-ring,
+  .cursor-dot {
+    display: none;
+  }
+}

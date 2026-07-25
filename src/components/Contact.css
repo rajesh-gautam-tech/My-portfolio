@@ -1,0 +1,121 @@
+#contact {
+  background: linear-gradient(180deg, var(--void) 0%, rgba(138, 149, 160, 0.02) 100%);
+  padding-bottom: 110px;
+}
+.cl {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.ci h3 {
+  font-family: var(--fd);
+  font-size: 0.98rem;
+  font-weight: 400;
+  color: var(--silver);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+.ci h3 strong {
+  color: var(--platinum);
+  font-weight: 700;
+}
+.clinks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.clink {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  padding: 14px 20px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 8px;
+  transition: all 0.22s;
+  color: var(--silver);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+}
+.clink:hover {
+  border-color: var(--red-hi);
+  color: var(--platinum);
+  transform: translateX(4px);
+  box-shadow: -4px 0 0 var(--red-hi), 0 6px 20px var(--red-glow);
+}
+.clico {
+  width: 34px;
+  height: 34px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--red-hi);
+  border-radius: 6px;
+}
+.clc strong {
+  display: block;
+  font-family: var(--fm);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  color: var(--platinum);
+}
+.clc span {
+  font-size: 0.82rem;
+  font-weight: 400;
+  font-family: var(--fm);
+  color: var(--silver);
+}
+.cf {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.fg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fl {
+  font-family: var(--fm);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.fi,
+.fta {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--platinum);
+  font-family: var(--fb);
+  font-size: 0.9rem;
+  padding: 14px 16px;
+  outline: none;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: none;
+  -webkit-appearance: none;
+}
+.fi:focus,
+.fta:focus {
+  border-color: var(--red-hi);
+  box-shadow: 0 0 12px var(--red-glow);
+  background: #ffffff;
+}
+.fta {
+  height: 140px;
+}
+
+@media (max-width: 900px) {
+  .cl {
+    grid-template-columns: 1fr;
+  }
+}

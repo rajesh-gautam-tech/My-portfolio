@@ -1,0 +1,135 @@
+#fig {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  pointer-events: auto;
+  width: 72px;
+  height: 90px;
+  transform-origin: bottom center;
+  animation: breatheBottom 4s ease-in-out infinite;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+@keyframes breatheBottom {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+    transform: translateX(-50%) scaleY(1.04) translateY(-2px);
+  }
+}
+
+/* once the doll has been dragged, it's positioned via left/top (no centering needed) */
+#fig.dragged {
+  transform: none;
+  animation: breatheFree 4s ease-in-out infinite;
+}
+@keyframes breatheFree {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.04) translateY(-2px);
+  }
+}
+
+/* while actively being dragged, kill all animation so it doesn't fight the pointer */
+#fig.is-dragging {
+  animation: none !important;
+}
+
+/* ── DANCE ON HOVER, STOP ON LEAVE — works no matter where the doll is ── */
+#fig:hover:not(.is-dragging) {
+  animation: fig-bob 0.55s ease-in-out infinite;
+}
+#fig.dragged:hover:not(.is-dragging) {
+  animation: fig-bob-free 0.55s ease-in-out infinite;
+}
+@keyframes fig-bob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-6px) rotate(-2deg);
+  }
+}
+@keyframes fig-bob-free {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+}
+
+/* ── ARMS: both hands go up together, then down, on repeat ── */
+.arm-left,
+.arm-right {
+  transform-box: fill-box;
+}
+.arm-left {
+  transform-origin: 88% 8%;
+}
+.arm-right {
+  transform-origin: 12% 8%;
+}
+#fig:hover:not(.is-dragging) .arm-left {
+  animation: arm-up-down-left 0.55s ease-in-out infinite;
+}
+#fig:hover:not(.is-dragging) .arm-right {
+  animation: arm-up-down-right 0.55s ease-in-out infinite;
+}
+@keyframes arm-up-down-left {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-70deg);
+  }
+}
+@keyframes arm-up-down-right {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(70deg);
+  }
+}
+
+/* ── FACE: smile + rosy cheeks on hover ── */
+.mouth-default {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+.mouth-smile {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+#fig:hover .mouth-default {
+  opacity: 0;
+}
+#fig:hover .mouth-smile {
+  opacity: 1;
+}
+.cheek {
+  transition: opacity 0.25s ease;
+}
+#fig:hover .cheek {
+  opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+  #fig {
+    width: 56px;
+    height: 70px;
+  }
+}
